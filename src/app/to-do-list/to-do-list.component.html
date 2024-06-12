@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container ">
+
+		<h1 class="text-center heading">To-Do Application</h1>
+
+		<hr>
+		<form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+			<div class="form-group">
+				<div class="row g-3">
+					<div class="col-lg-7">
+						<label for="task">Task</label>
+						<input type="text" class="form-control" id="task" placeholder="Enter task" ngModel
+							name="task" required>
+					</div>
+					<div class="d-grid gap-2 col-5">
+						<button [disabled]="taskForm.invalid" id="submitButton" type="submit"
+							class="btn btn-primary  ">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		<hr>
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th scope="col">Task</th>
+					<th scope="col">Completed</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody class="text-center">
+				<tr *ngFor="let t of taskArray; let i = index">
+					<td>{{ t.taskName }}</td>
+					<td><input (change)="onCheck(i)" id="myCheckbox" type="checkbox"
+							[checked]="t.isCompleted"></td>
+					<td><button class="btn btn-danger btn-sm" (click)="onDelete(i)">Delete</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
